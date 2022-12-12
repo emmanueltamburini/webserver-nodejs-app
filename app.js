@@ -8,8 +8,12 @@ const port = 8080;
 // Serve static content
 app.use(express.static('public'))
 
-app.get('/basic-response', (req, res) => {
-    res.send('Basic Response page');
+app.get('/generic', (req, res) => {
+    res.sendFile(__dirname + '/public/generic.html');
+});
+
+app.get('/elements', (req, res) => {
+    res.sendFile(__dirname + '/public/elements.html');
 });
 
 app.get('*',(req, res) => {
