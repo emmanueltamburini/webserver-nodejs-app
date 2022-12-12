@@ -1,16 +1,19 @@
-import http from "http";
+import express from 'express';
+const app = express();
+const port = 8080;
 
-http.createServer((req, res) => {
-    res.setHeader('Content-Disposition', 'attachment; filename=list.csv')
-    res.writeHead(200, {'Content-Type': 'application/csv'});
+app.get('/', (req, res) => {
+  res.send('Home page');
+});
 
-    res.write('id, name\n');
-    res.write('1, name1\n');
-    res.write('2, name2\n');
-    res.write('3, name3\n');
-    res.write('4, name4\n');
-    res.end();
+app.get('/hello-world', (req, res) => {
+    res.send('Hello World page');
+});
+
+app.get('*',(req, res) => {
+  res.send('404 | Page not found');
+});
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`)
 })
-.listen(8080);
-
-console.log('Listing the port', 8080);
